@@ -1,73 +1,35 @@
-# React + TypeScript + Vite
+# Weather Forecast App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a weather forecast application that allows users to check weather conditions for cities around the world. The application fetches real-time meteorological data and provides an intuitive interface with hourly temperature forecasts.
 
-Currently, two official plugins are available:
+[Image placeholder - Add screenshot here]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
 
-## React Compiler
+* **React** - JavaScript library for building user interfaces
+* **TypeScript** - Superset of JavaScript that adds static typing
+* **Open-Meteo API** - For retrieving weather forecast data
+* **Axios** - HTTP client for API requests
+* **React Hook Form** - For form validation and management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## API
 
-## Expanding the ESLint configuration
+This project uses the [Open-Meteo API](https://open-meteo.com/) to fetch weather forecast data including hourly temperatures and location details.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
+```bash
+# Clone the repository
+git clone git@github.com:Gabriel-Valadaress/Weather-Forecast-React-TS.git
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run the development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Select a city from the dropdown menu
+2. Click the "Search" button
+3. View the weather forecast with hourly temperature data

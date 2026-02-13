@@ -3,6 +3,7 @@ import type { ForecastType } from "./models/forecast.interface";
 import { Forecast } from "./api/api";
 import CityForecast from "./components/cityForecast";
 import CityOptions from "./components/cityOptions";
+import "./App.css";
 
 export default function App() {
   const [forecast, setForecast] = useState<ForecastType>();
@@ -33,8 +34,8 @@ export default function App() {
 
       <CityOptions onSubmitCoordinates={handleCoordinates} />
 
-      {isLoading && <p>Loading...</p>}
-      {isError && <p style={{ color: "red" }}>Error loading forecast</p>}
+      {isLoading && <p className="loadingMessage">Loading...</p>}
+      {isError && <p className="errorMessage">Error loading forecast</p>}
       {forecast && <CityForecast forecast={forecast} />}
     </>
   );

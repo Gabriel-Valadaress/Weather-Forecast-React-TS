@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import citiesCoordinates from "../../data/citiesCoordinates.json";
+import "./styles.css";
 
 interface City {
   city: string;
@@ -43,22 +44,27 @@ export default function CityOptions({ onSubmitCoordinates }: Props) {
   });
 
   return (
-    <form onSubmit={onSubmit}>
-      <select {...register("city", { required: "City is required" })}>
-        <option value="">Select a city</option>
+    <form onSubmit={onSubmit} className="formContainer">
+      <div className="selectWrapper">
+        <select 
+          {...register("city", { required: "City is required" })}
+          className="select"
+        >
+          <option value="">Select a city</option>
 
-        {typedCities.map(({ city }) => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ))}
-      </select>
+          {typedCities.map(({ city }) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
 
-      {errors.city && (
-        <p style={{ color: "red" }}>{errors.city.message}</p>
-      )}
+        {errors.city && (
+          <p className="errorMessage">{errors.city.message}</p>
+        )}
+      </div>
 
-      <button type="submit">Search</button>
+      <button type="submit" className="submitButton">Search</button>
     </form>
   );
 }
