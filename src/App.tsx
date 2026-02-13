@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import type { ForecastType } from "./models/forecast.interface";
+import { Forecast } from "./api/api";
+import CityForecast from "./components/cityForecast";
+import CityOptions from "./components/cityOptions";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [forecast, setForecast] = useState<ForecastType>();
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCoordinates = async ({ latitude, longitude }: {
+    latitude: number;
+    longitude: number;
+  }) => {
+    setIsLoading(true);
+    setIsError(false);
+    setForecast(undefined);
+
+    try {
+      const forecastData = await Forecast.getForecast(latitude, longitude);
+      setForecast(forecastData);
+    } catch (err) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <h1>Weather forecast</h1>
 
-export default App
+      <CityOptions onSubmitCoordinates={handleCoordinates} />
+
+      {isLoading && <p>Loading...</p>}
+      {isError && <p style={{ color: "red" }}>Error loading forecast</p>}
+      {forecast && <CityForecast forecast={forecast} />}
+    </>
+  );
+};
