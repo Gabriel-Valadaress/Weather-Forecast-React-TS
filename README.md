@@ -2,7 +2,7 @@
 
 This project is a weather forecast application that allows users to check weather conditions for cities around the world. The application fetches real-time meteorological data and provides an intuitive interface with hourly temperature forecasts.
 
-[Image placeholder - Add screenshot here]
+<img width="847" height="673" alt="weather-forecast" src="https://github.com/user-attachments/assets/f0525f4c-a12f-4d85-8744-d5981ef10b3a" />
 
 ## Technologies Used
 
